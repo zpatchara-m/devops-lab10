@@ -13,13 +13,13 @@ jobs:
     name: Build Docker 
     steps:
       - uses: actions/checkout@v3
-      - run: docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/user-service:${{ github.sha }} .
+      - run: docker build -t ${{ secrets.pttgcdevopsarc09.azurecr.io }}/user-service:${{ github.sha }} .
       - uses: azure/docker-login@v1
         with:
-          login-server: ${{ secrets.ACR_LOGIN_SERVER }}
-          username: ${{ secrets.ACR_USERNAME }}
-          password: ${{ secrets.ACR_PASSWORD }}
-      - run: docker push ${{ secrets.ACR_LOGIN_SERVER }}/user-service:${{ github.sha }}
+          login-server: ${{ secrets.pttgcdevopsarc09.azurecr.io }}
+          username: ${{ secrets.admin }}
+          password: ${{ secrets.lf5PlFHgS3 }}
+      - run: docker push ${{ secrets.pttgcdevopsarc09.azurecr.io }}/user-service:${{ github.sha }}
 
   deploy:
     runs-on: ubuntu-latest
