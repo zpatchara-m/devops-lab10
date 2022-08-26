@@ -22,7 +22,7 @@ userService:
     limits:
       memory: 1G
       cpu: 500m
-  domainName: "api-cluster02.z-unified.com" # Change this to your domain that provided in spreadsheet
+  domainName: "api-cluster06.z-unified.com" # Change this to your domain that provided in spreadsheet
 ingress:
   enabled: true
   className: ""
