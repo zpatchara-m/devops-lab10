@@ -13,13 +13,13 @@ jobs:
     name: Build Docker 
     steps:
       - uses: actions/checkout@v3
-      - run: docker build -t ${{ secrets.pttgcdevopsarc09.azurecr.io }}/user-service:${{ github.sha }} .
+      - run: docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/user-service:${{ github.sha }} .
       - uses: azure/docker-login@v1
         with:
-          login-server: ${{ secrets.pttgcdevopsarc09.azurecr.io }}
-          username: ${{ secrets.admin }}
-          password: ${{ secrets.lf5PlFHgS3 }}
-      - run: docker push ${{ secrets.pttgcdevopsarc09.azurecr.io }}/user-service:${{ github.sha }}
+          login-server: ${{ secrets.ACR_LOGIN_SERVER }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+      - run: docker push ${{ secrets.ACR_LOGIN_SERVER }}/user-service:${{ github.sha }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -28,9 +28,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          repository: "zpatchara-m/devops-lab10"  ## Change this to your CD repository
+          repository: "zeabix-cloud-native/zpatchara-m/devops-lab10"  ## Change this to your CD repository
           ref: 'main'
-          token: ${{ secrets.CD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_PAT }}
+          token: ${{ secrets.CD_PAT }}
       - name: Update image version
         run: yq -i e '.userService.tag="${{ github.sha }}"' values.yaml
         working-directory: ./production
@@ -40,4 +40,5 @@ jobs:
           git config --global user.name  'devops@zeabix.com'
           git add .
           git commit -m "CD deployment with tag ${{ github.sha }}"
-          git push https://${{ secrets.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 }}@github.com/zpatchara-m/devops-lab10.git
+          git push https://${{ secrets.CD_PAT }}@github.com/zeabix-cloud-native/zpatchara-m/devops-lab10.git
+
