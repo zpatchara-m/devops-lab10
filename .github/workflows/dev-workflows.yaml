@@ -28,7 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          repository: "zeabix-cloud-native/pttgc-devops-lab10-cd"  ## Change this to your CD repository
+          repository: "zpatchara-m/devops-lab10"  ## Change this to your CD repository
           ref: 'main'
           token: ${{ secrets.CD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_PAT }}
       - name: Update image version
@@ -40,4 +40,4 @@ jobs:
           git config --global user.name  'devops@zeabix.com'
           git add .
           git commit -m "CD deployment with tag ${{ github.sha }}"
-          git push https://${{ secrets.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 }}@github.com/zeabix-cloud-native/pttgc-devops-lab10-cd.git
+          git push https://${{ secrets.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 }}@github.com/zpatchara-m/devops-lab10.git
